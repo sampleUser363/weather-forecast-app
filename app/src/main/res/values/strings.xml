@@ -14,4 +14,7 @@
     <string name="hyogo_city_property">Hyogo</string>
     <string name="oita_city_property">Oita</string>
     <string name="hokkaido_city_property">Hokkaido</string>
+
+    <!-- content description -->
+    <string name="back_button_description">前の画面に戻る</string>
 </resources>
