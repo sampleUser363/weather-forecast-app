@@ -15,6 +15,10 @@
     <string name="oita_city_property">Oita</string>
     <string name="hokkaido_city_property">Hokkaido</string>
 
+    <!-- weather screen -->
+    <string name="weather_forecast_title">%sの天気予報</string>
+    <string name="expected_temperature_text">%s ℃</string>
+
     <!-- content description -->
     <string name="back_button_description">前の画面に戻る</string>
 </resources>
