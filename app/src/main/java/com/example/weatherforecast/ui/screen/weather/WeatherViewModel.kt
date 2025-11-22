@@ -7,7 +7,6 @@ import com.example.weatherforecast.model.WeatherInfo
 import com.example.weatherforecast.ui.navigation.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
-import java.time.Instant
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
@@ -18,6 +17,8 @@ class WeatherViewModel @Inject constructor(
     // enum classのnameから種別を取得
     val cityType = City.valueOf(city)
 
+    // FIXME: レイアウト確認用の仮ステータス。API通信機能実装時、レスポンスに応じて管理
+    val isError = false
     // FIXME: APIからの取得機能実装時、正しいデータに差し替え
     val dummyData = WeatherInfo(
         iconUrl = "https://openweathermap.org/img/wn/04d@2x.png",

@@ -19,6 +19,9 @@
     <string name="weather_forecast_title">%sの天気予報</string>
     <string name="expected_temperature_text">%s ℃</string>
 
+    <string name="weather_forecast_error_message">通信に失敗しました。</string>
+    <string name="button_retry">リトライ</string>
+
     <!-- content description -->
     <string name="back_button_description">前の画面に戻る</string>
 </resources>

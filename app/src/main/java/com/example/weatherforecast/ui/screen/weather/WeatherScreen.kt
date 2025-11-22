@@ -1,5 +1,6 @@
 package com.example.weatherforecast.ui.screen.weather
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -8,9 +9,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,11 +50,10 @@ fun WeatherScreen(
                 navigateUp = onNavigateUp
             )
         },
-        modifier = Modifier
-            .fillMaxSize()
-        ,
+        modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
         WeatherBody(
+            isError = viewModel.isError,
             weatherInfoList = viewModel.dummyList,
             contentPadding = innerPadding
         )
@@ -59,6 +62,64 @@ fun WeatherScreen(
 
 @Composable
 fun WeatherBody(
+    isError: Boolean,
+    weatherInfoList: List<WeatherInfo>,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp)
+) {
+    if (isError) {
+        ErrorScreen(
+            modifier = modifier,
+            contentPadding = contentPadding
+        )
+    } else {
+        WeatherForecastList(
+            weatherInfoList = weatherInfoList,
+            modifier = modifier,
+            contentPadding = contentPadding
+        )
+    }
+}
+
+@Composable
+fun ErrorScreen(
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp)
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(contentPadding),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.weather_forecast_error_message),
+        )
+        Button(
+            onClick = {
+                // TODO: API通信のリトライ処理
+            },
+            colors = ButtonDefaults.buttonColors(
+                // 背景色
+                containerColor = MaterialTheme.colorScheme.primary,
+                // 文字色
+                contentColor = MaterialTheme.colorScheme.onPrimary
+            ),
+            elevation = ButtonDefaults.buttonElevation(
+                defaultElevation = 4.dp
+            ),
+            modifier = Modifier.padding(top = 16.dp)
+        ) {
+            Text(
+                stringResource(R.string.button_retry)
+            )
+        }
+    }
+}
+
+@Composable
+fun WeatherForecastList(
     weatherInfoList: List<WeatherInfo>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
@@ -71,7 +132,7 @@ fun WeatherBody(
         LazyColumn(
             contentPadding = PaddingValues(16.dp)
         ) {
-            itemsIndexed(weatherInfoList) { index, weatherInfo ->
+            items(weatherInfoList) { weatherInfo ->
                 WeatherItem(weatherInfo = weatherInfo)
             }
         }
@@ -123,7 +184,7 @@ fun WeatherItem(weatherInfo: WeatherInfo) {
 // ======================================================
 @Preview(showBackground = true)
 @Composable
-fun WeatherBodyPreview() {
+fun WeatherSuccessBodyPreview() {
     val dummyData = WeatherInfo(
         iconUrl = "https://openweathermap.org/img/wn/04d@2x.png",
         iconDescription = "曇りがち",
@@ -132,6 +193,20 @@ fun WeatherBodyPreview() {
     )
     val dummyList = listOf(dummyData)
     WeatherForecastTheme {
-        WeatherBody(weatherInfoList = dummyList)
+        WeatherBody(
+            isError = false,
+            weatherInfoList = dummyList
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun WeatherErrorBodyPreview() {
+    WeatherForecastTheme {
+        WeatherBody(
+            isError = true,
+            weatherInfoList = emptyList()
+        )
     }
 }
