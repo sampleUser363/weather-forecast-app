@@ -10,10 +10,6 @@
     <string name="hyogo_city_name">兵庫</string>
     <string name="oita_city_name">大分</string>
     <string name="hokkaido_city_name">北海道</string>
-    <string name="tokyo_city_property">Tokyo</string>
-    <string name="hyogo_city_property">Hyogo</string>
-    <string name="oita_city_property">Oita</string>
-    <string name="hokkaido_city_property">Hokkaido</string>
 
     <!-- weather screen -->
     <string name="weather_forecast_title">%sの天気予報</string>

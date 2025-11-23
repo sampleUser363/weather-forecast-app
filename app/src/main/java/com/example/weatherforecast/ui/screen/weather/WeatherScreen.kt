@@ -1,6 +1,7 @@
 package com.example.weatherforecast.ui.screen.weather
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -53,38 +55,51 @@ fun WeatherScreen(
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
         WeatherBody(
-            isError = viewModel.isError,
-            weatherInfoList = viewModel.dummyList,
-            contentPadding = innerPadding
+            uiState = viewModel.uiState,
+            contentPadding = innerPadding,
+            onClickRetry = { viewModel.retryWeatherInfo() }
         )
     }
 }
 
 @Composable
 fun WeatherBody(
-    isError: Boolean,
-    weatherInfoList: List<WeatherInfo>,
+    uiState: WeatherUiState,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(0.dp)
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+    onClickRetry: () -> Unit,
 ) {
-    if (isError) {
-        ErrorScreen(
-            modifier = modifier,
-            contentPadding = contentPadding
-        )
-    } else {
-        WeatherForecastList(
-            weatherInfoList = weatherInfoList,
-            modifier = modifier,
-            contentPadding = contentPadding
-        )
+    when(uiState) {
+        WeatherUiState.Loading -> {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        }
+        WeatherUiState.Error -> {
+            ErrorScreen(
+                modifier = modifier,
+                contentPadding = contentPadding,
+                onClickRetry = onClickRetry
+            )
+        }
+        is WeatherUiState.Success -> {
+            WeatherForecastList(
+                weatherInfoList = uiState.weatherInfos,
+                modifier = modifier,
+                contentPadding = contentPadding
+            )
+        }
     }
 }
 
 @Composable
 fun ErrorScreen(
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(0.dp)
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+    onClickRetry: () -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -97,9 +112,7 @@ fun ErrorScreen(
             text = stringResource(R.string.weather_forecast_error_message),
         )
         Button(
-            onClick = {
-                // TODO: API通信のリトライ処理
-            },
+            onClick = onClickRetry,
             colors = ButtonDefaults.buttonColors(
                 // 背景色
                 containerColor = MaterialTheme.colorScheme.primary,
@@ -186,7 +199,7 @@ fun WeatherItem(weatherInfo: WeatherInfo) {
 @Composable
 fun WeatherSuccessBodyPreview() {
     val dummyData = WeatherInfo(
-        iconUrl = "https://openweathermap.org/img/wn/04d@2x.png",
+        weatherIconId = "04d",
         iconDescription = "曇りがち",
         temperature = 16.28,
         dt = 1763698885
@@ -194,8 +207,8 @@ fun WeatherSuccessBodyPreview() {
     val dummyList = listOf(dummyData)
     WeatherForecastTheme {
         WeatherBody(
-            isError = false,
-            weatherInfoList = dummyList
+            uiState = WeatherUiState.Success(dummyList),
+            onClickRetry = {}
         )
     }
 }
@@ -205,8 +218,19 @@ fun WeatherSuccessBodyPreview() {
 fun WeatherErrorBodyPreview() {
     WeatherForecastTheme {
         WeatherBody(
-            isError = true,
-            weatherInfoList = emptyList()
+            uiState = WeatherUiState.Error,
+            onClickRetry = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun WeatherLoadingBodyPreview() {
+    WeatherForecastTheme {
+        WeatherBody(
+            uiState = WeatherUiState.Loading,
+            onClickRetry = {}
         )
     }
 }
