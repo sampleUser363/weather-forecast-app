@@ -34,12 +34,15 @@ import com.example.weatherforecast.ui.theme.WeatherForecastTheme
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onCityClick: (String) -> Unit,
 ) {
     Scaffold(
         topBar = {
             TopBar(
-                titleResId = R.string.home_screen_title
+                title = stringResource(R.string.home_screen_title),
+                canNavigateBack = false,
+                navigateUp = {}
             )
         },
         modifier = Modifier.fillMaxSize(),
@@ -47,7 +50,7 @@ fun HomeScreen(
         HomeBody(
             cities = City.entries,
             onCityClick = {
-                // TODO: 都市押下時、それに応じた天気画面に遷移
+                onCityClick(it.name)
             },
             contentPadding = innerPadding,
             modifier = modifier

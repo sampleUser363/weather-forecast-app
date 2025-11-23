@@ -5,6 +5,11 @@ package com.example.weatherforecast.ui.navigation
  *
  * @property route NavHostで使用する画面のroute
  */
-enum class Screen(val route: String) {
-    HOME("home")
+sealed class Screen(val route: String) {
+    object HOME : Screen("home")
+    object WEATHER : Screen("weather") {
+        const val CITY_ARG = "city"
+        val routeWithArgs = "$route/{$CITY_ARG}"
+        fun createRoute(city: String) = "weather/$city"
+    }
 }
