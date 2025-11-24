@@ -20,6 +20,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -33,6 +38,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.weatherforecast.R
 import com.example.weatherforecast.model.WeatherInfo
+import com.example.weatherforecast.ui.component.ConfirmDialog
 import com.example.weatherforecast.ui.component.TopBar
 import com.example.weatherforecast.ui.theme.WeatherForecastTheme
 
@@ -41,6 +47,18 @@ fun WeatherScreen(
     onNavigateUp: () -> Unit,
     viewModel: WeatherViewModel = hiltViewModel()
 ) {
+    var showsRequestPermissionDialog by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        viewModel.eventFlow.collect { event ->
+            when(event) {
+                is WeatherUiEvent.ShowLocationPermissionDialog -> {
+                    // 権限許可依頼ダイアログを表示
+                    showsRequestPermissionDialog = true
+                }
+            }
+        }
+    }
+
     Scaffold(
         topBar = {
             TopBar(
@@ -58,6 +76,17 @@ fun WeatherScreen(
             uiState = viewModel.uiState,
             contentPadding = innerPadding,
             onClickRetry = { viewModel.retryWeatherInfo() }
+        )
+    }
+
+    if (showsRequestPermissionDialog) {
+        ConfirmDialog(
+            titleResourceId = R.string.request_location_permission_title,
+            messageResourceId = R.string.request_location_permission_message,
+            onConfirmTextResourceId = R.string.button_ok,
+            onConfirm = {
+                showsRequestPermissionDialog = false
+            }
         )
     }
 }

@@ -3,13 +3,14 @@
 
     <!-- home -->
     <string name="home_screen_title">天気予報</string>
-    <string name="home_select_city_text">天気予報を確認したい都市を選択してください</string>
+    <string name="home_select_city_text">天気予報を確認したい場所を選択してください</string>
 
     <!-- city name -->
     <string name="tokyo_city_name">東京</string>
     <string name="hyogo_city_name">兵庫</string>
     <string name="oita_city_name">大分</string>
     <string name="hokkaido_city_name">北海道</string>
+    <string name="current_location">現在地</string>
 
     <!-- weather screen -->
     <string name="weather_forecast_title">%sの天気予報</string>
@@ -17,6 +18,13 @@
 
     <string name="weather_forecast_error_message">通信に失敗しました。</string>
     <string name="button_retry">リトライ</string>
+
+    <!-- message -->
+    <string name="request_location_permission_title">権限許可のお願い</string>
+    <string name="request_location_permission_message">現在地の天気予報を確認するには、位置情報の権限が必要です。\n「正確な位置」または「おおよその位置」の権限を許可してください。\n※「正確な位置」を許可すると、より現在地に近い天気を表示できます。</string>
+    <!-- action -->
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">キャンセル</string>
 
     <!-- content description -->
     <string name="back_button_description">前の画面に戻る</string>
