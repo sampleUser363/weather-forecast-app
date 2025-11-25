@@ -15,8 +15,8 @@ class Converters @Inject constructor(
     moshi: Moshi
 ) {
     private val listType = Types.newParameterizedType(
-    List::class.java,
-    WeatherInfo::class.java
+        List::class.java,
+        WeatherInfo::class.java
     )
     private val weatherInfoListAdapter = moshi.adapter<List<WeatherInfo>>(listType)
 

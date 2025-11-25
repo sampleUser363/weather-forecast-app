@@ -8,8 +8,6 @@ interface WeatherForecastLocalDataSource {
 
     suspend fun updateCache(weatherEntity: WeatherEntity)
 
-    suspend fun deleteCache(weatherEntity: WeatherEntity)
-
     /** 都市名を用いてキャッシュから直近5日間の天気情報を取得 */
     suspend fun getWeatherEntityListCache(city: City): WeatherEntity?
 }
