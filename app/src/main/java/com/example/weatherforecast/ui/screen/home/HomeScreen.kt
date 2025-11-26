@@ -8,10 +8,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
@@ -71,6 +73,7 @@ fun HomeScreen(
             )
         },
         modifier = Modifier.fillMaxSize(),
+        contentWindowInsets = WindowInsets.safeDrawing
     ) { innerPadding ->
         HomeBody(
             cities = City.entries,
@@ -121,17 +124,17 @@ fun HomeBody(
     Column(
         modifier = modifier.padding(contentPadding)
     ) {
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = stringResource(R.string.home_select_city_text),
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(horizontal = 16.dp),
             style = MaterialTheme.typography.titleMedium
         )
         Card(
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(16.dp)
         ) {
             LazyColumn {
                 itemsIndexed(cities) { index, city ->
