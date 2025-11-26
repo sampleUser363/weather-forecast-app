@@ -16,4 +16,18 @@ interface WeatherApiService {
         @Query("lang")
         lang: String = "ja"
     ) : WeatherForecastResponse
+
+    @GET("data/2.5/forecast")
+    suspend fun getWeatherForecast(
+        @Query("lat")
+        latitude: String,
+        @Query("lon")
+        longitude: String,
+        @Query("appId")
+        appId: String,
+        @Query("units")
+        units: String = "metric",
+        @Query("lang")
+        lang: String = "ja"
+    ) : WeatherForecastResponse
 }

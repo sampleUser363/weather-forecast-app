@@ -74,6 +74,8 @@ dependencies {
     ksp(libs.moshi.kotlin.codegen)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+    implementation(libs.play.services.location)
+    implementation(libs.kotlinx.coroutines.play.services)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
