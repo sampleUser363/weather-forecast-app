@@ -1,6 +1,12 @@
 package com.example.weatherforecast.ui.component
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -24,7 +30,14 @@ fun TopBar(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit
 ) {
-    Column {
+    Column(
+        modifier = modifier
+            .padding(
+                WindowInsets.safeDrawing
+                    .only(WindowInsetsSides.Horizontal)
+                    .asPaddingValues()
+            )
+    ) {
         CenterAlignedTopAppBar(
             title = {
                 Column(
