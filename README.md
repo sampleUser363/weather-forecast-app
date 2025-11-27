@@ -50,11 +50,12 @@ OpenWeatherMap APIから天気情報を取得して表示する天気予報ア�
 
 | ホーム画面 | 天気画面(成功時) |
 | --- | --- |
-| <img width="1080" height="2400" alt="Screenshot_20251126_220446" src="https://github.com/user-attachments/assets/8a9141c1-47e2-4ef9-a114-ae973d2120c6" /> | <img width="1080" height="2400" alt="Screenshot_20251126_220454" src="https://github.com/user-attachments/assets/0fa004ff-7d66-42b3-95c4-baef713c8953" /> |
+| <img width="1080" height="2400" alt="Screenshot_20251126_220446" src="https://github.com/user-attachments/assets/ae44a7ac-5320-4801-9e2a-2d0f91dd3bd6" /> | <img width="1080" height="2400" alt="Screenshot_20251126_220454" src="https://github.com/user-attachments/assets/36bff696-5332-4ac5-ad64-98fbdd7bd533" /> |
+
 
 | 天気画面(読み込み中) | 天気画面(失敗時) |
 | --- | --- |
-| <img width="1080" height="2400" alt="Screenshot_20251126_221615" src="https://github.com/user-attachments/assets/ef3b941d-1768-4125-a40f-e40a9a6e4d91" /> | <img width="1080" height="2400" alt="Screenshot_20251126_221401" src="https://github.com/user-attachments/assets/44b20a5b-8bf8-4cb6-89ce-cd265a1c2fce" /> |
+| <img width="1080" height="2400" alt="Screenshot_20251126_221401" src="https://github.com/user-attachments/assets/6f3eee52-df19-4789-91f9-33cee0bba810" /> | <img width="1080" height="2400" alt="Screenshot_20251126_221615" src="https://github.com/user-attachments/assets/9605cbbd-c0ee-4c90-8bb7-263d28e21400" /> |
 
 
 ## 機能仕様
@@ -83,13 +84,13 @@ OpenWeatherMap APIから天気情報を取得して表示する天気予報ア�
 
 | 都市選択時の天気予報取得 | オフライン時のエラー表示→復帰 |
 | --- | --- |
-| <video src="https://github.com/user-attachments/assets/94588b2c-2fb5-4485-8926-f453965a832b"> |  <video src="https://github.com/user-attachments/assets/57ef40d1-7fdf-4818-89e8-e0ec6ba87942"> |
+| <video src="https://github.com/user-attachments/assets/65183acc-1fbf-479e-8c3d-ae653f6e4177"> |  <video src="https://github.com/user-attachments/assets/2a13dd06-683c-48e2-942b-999f2a9d282b"> |
+
 
 
 | オフライン時のキャッシュ利用（同日同地域） | 現在地選択時の権限リクエストと天気情報の取得 |
 | --- | --- |
-| <video src="https://github.com/user-attachments/assets/9bcb6725-a21a-4ca6-87ee-2172e5bbf0be"> |  <video src="https://github.com/user-attachments/assets/b8a22f92-d07f-4eb3-a2b3-04bc4cf76a59"> |
-
+| <video src="https://github.com/user-attachments/assets/80cd81bd-47a2-4943-a2b6-fe3bfe157ef0"> |  <video src="https://github.com/user-attachments/assets/02bc7627-6a89-47d1-856d-15916d9db65b"> |
 
 
 ## 今後の展望
