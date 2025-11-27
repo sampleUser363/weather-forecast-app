@@ -55,7 +55,7 @@ OpenWeatherMap APIから天気情報を取得して表示する天気予報ア�
 
 | 天気画面(読み込み中) | 天気画面(失敗時) |
 | --- | --- |
-| <img width="1080" height="2400" alt="Screenshot_20251126_221401" src="https://github.com/user-attachments/assets/6f3eee52-df19-4789-91f9-33cee0bba810" /> | <img width="1080" height="2400" alt="Screenshot_20251126_221615" src="https://github.com/user-attachments/assets/9605cbbd-c0ee-4c90-8bb7-263d28e21400" /> |
+| <img width="1080" height="2400" alt="Screenshot_20251126_221615" src="https://github.com/user-attachments/assets/9605cbbd-c0ee-4c90-8bb7-263d28e21400" /> |<img width="1080" height="2400" alt="Screenshot_20251126_221401" src="https://github.com/user-attachments/assets/6f3eee52-df19-4789-91f9-33cee0bba810" /> |
 
 
 ## 機能仕様
